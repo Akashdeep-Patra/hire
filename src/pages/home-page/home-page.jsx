@@ -2,6 +2,7 @@ import { selectHomeVideos } from "../../redux/home/home.selectors";
 import { setHomeVideos } from "../../redux/home/home.actions";
 import { setSelectedVideo } from "../../redux/player/player.actions";
 import { createStructuredSelector } from "reselect";
+// import Footer from "../../components/footer/footer";
 import { connect } from "react-redux";
 import React, { useEffect } from "react";
 import { youTubeQuerry } from "../../api";

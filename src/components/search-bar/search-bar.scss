@@ -1,7 +1,48 @@
-.search-bar {
-  width: 50vw;
-  height: 40px;
-  padding: 1%;
-  border-radius: 10px;
-  border: 1px solid grey;
+$sub-color: grey;
+$main-color: rgb(142, 132, 132);
+
+@mixin shrinkLabel {
+  top: -20px;
+  font-size: 11px;
+  color: $main-color;
+}
+.search-container {
+  width: 70vw;
+}
+.group-search {
+  position: relative;
+  .form-input-search {
+    background: none;
+    background-color: rgb(243, 238, 238);
+    font-size: 18px;
+    padding: 10px;
+    width: 40vw;
+    border: 1px solid rgb(200, 185, 185);
+    border-radius: 6px;
+    transition: all 0.7s;
+    &:focus {
+      outline: none;
+      background-color: rgb(246, 246, 246);
+      width: 70vw;
+    }
+
+    &:focus ~ .form-input-label-search {
+      @include shrinkLabel();
+    }
+  }
+
+  .form-input-label-search {
+    color: $sub-color;
+    font-size: 16px;
+    font-weight: normal;
+    position: absolute;
+    pointer-events: none;
+    left: 5px;
+    top: 10px;
+    transition: 300ms ease all;
+
+    &.shrink {
+      @include shrinkLabel();
+    }
+  }
 }
