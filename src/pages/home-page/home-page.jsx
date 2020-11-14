@@ -5,17 +5,19 @@ import { createStructuredSelector } from "reselect";
 // import Footer from "../../components/footer/footer";
 import { connect } from "react-redux";
 import React, { useEffect } from "react";
-import { youTubeQuerry } from "../../api";
+// import { youTubeQuerry } from "../../api";
 import VideoCard from "../../components/video-card/video-card";
 import "./home-page.scss";
+import { getHomeVideos } from "../../api/firebase/utils";
 const HomePage = ({ setHomeVideos, setSelectedVideo, videos }) => {
   useEffect(() => {
     const getSearch = async (text) => {
-      const result = await youTubeQuerry(text);
+      const result = await getHomeVideos();
+      // await addVideosToHome(result, text);
       setHomeVideos(result);
       setSelectedVideo(result[25]);
     };
-    getSearch("dogs");
+    getSearch("");
   }, [setHomeVideos, setSelectedVideo]);
 
   return (

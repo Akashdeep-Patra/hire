@@ -18,6 +18,9 @@
     padding: 0 1%;
     justify-content: space-around;
     overflow: scroll;
+    & > div {
+      margin-bottom: 20px;
+    }
   }
 }
 @media only screen and (max-width: 1200px) {
@@ -26,10 +29,29 @@
     justify-content: space-evenly;
     .player {
       width: 95vw;
+      margin-bottom: 5%;
     }
     .list {
-      width: 95vw;
+      width: 70vw;
       overflow: unset;
+    }
+  }
+}
+
+@media screen and (max-width: 750px) {
+  .video-player {
+    .player {
+      height: 50vh;
+    }
+  }
+}
+@media screen and (max-width: 450px) {
+  .video-player {
+    .player {
+      height: 30vh;
+    }
+    .list {
+      width: 100%;
     }
   }
 }

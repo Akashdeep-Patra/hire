@@ -15,7 +15,7 @@ const SearchBar = ({ searchFieldStart }) => {
         }}
       >
         <input
-          className="form-input-search"
+          className={`${text.length ? "extend" : ""} form-input-search`}
           onChange={(e) => setText(e.target.value)}
         />
         <label

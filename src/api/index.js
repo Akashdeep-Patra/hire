@@ -1,6 +1,5 @@
 import axios from "axios";
-const key1 = "AIzaSyAFl_vy-ZylzJRPCO2eUsuoota9cdYP-gc";
-const key2 = "AIzaSyCb1OkmFb__bC6aHA1qdBbNcxaAdPyrFkI";
+const key2 = "AIzaSyBlY8_gftan32DzZ1hINQYLQZiaoNP2iLU";
 
 export const youTubeQuerry = async (text) => {
   const youtube = axios.create({
