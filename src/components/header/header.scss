@@ -9,8 +9,12 @@
   .option {
     padding: 5px;
     transition: all 0.2s;
+    margin: 10px 0;
     @media screen and (max-width: 450px) {
       font-size: 10px;
+    }
+    @media screen and (max-width: 1200px) {
+      font-size: 12px;
     }
     &:hover {
       background-color: rgb(229, 225, 225);
@@ -26,6 +30,9 @@
     letter-spacing: 0.25rem;
     text-transform: uppercase;
     @media screen and (max-width: 450px) {
+      letter-spacing: unset;
+    }
+    @media screen and (max-width: 1200px) {
       letter-spacing: unset;
     }
 

@@ -8,6 +8,7 @@ import { createStructuredSelector } from "reselect";
 import { signOutStart } from "../../redux/user/user.actions";
 import Gravatar from "react-gravatar";
 function Header({ currentUser, signOutStart }) {
+  console.log(currentUser);
   return (
     <div className="header">
       <SearchBar />
@@ -23,16 +24,17 @@ function Header({ currentUser, signOutStart }) {
       <Link to="/">
         <div className="option">home</div>
       </Link>
-      <Link to="/player">
-        {" "}
-        <div className="option">player</div>{" "}
-      </Link>
       <Gravatar
         email={currentUser ? currentUser.email : "abc@xyz.com"}
         size={50}
-        rating="pg"
         forcedefault="y"
-        default="mp"
+        default={
+          currentUser
+            ? currentUser.photoURL
+              ? currentUser.photoURL
+              : "mp"
+            : "mp"
+        }
         className="custom-gravatar"
       />
     </div>
