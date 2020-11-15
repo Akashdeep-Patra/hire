@@ -4,6 +4,7 @@ const INITIAL_STATE = {
   signInError: null,
   signOutError: null,
   signUpError: null,
+  addVideoError: null,
 };
 const userReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
@@ -38,6 +39,16 @@ const userReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         signUpError: action.payload,
+      };
+    case UserActionType.ADD_VIDEO_SUCCESS:
+      return {
+        ...state,
+        addVideoError: null,
+      };
+    case UserActionType.ADD_VIDEO_FALIURE:
+      return {
+        ...state,
+        addVideoError: action.payload,
       };
     default:
       return state;

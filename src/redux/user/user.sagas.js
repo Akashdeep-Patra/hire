@@ -7,6 +7,7 @@ import {
   googleProvider,
   createUserProfileDocument,
   getCurrentUser,
+  addVideoToPlayList,
 } from "../../api/firebase/utils";
 import {
   signInSuccess,
@@ -15,6 +16,8 @@ import {
   signOutFaliure,
   signUpSuccess,
   signUpFalure,
+  addVideoSuccess,
+  addVideoFaliure,
 } from "./user.actions";
 
 export function* getSnapshotFromUserAuth(userAuth) {
@@ -122,8 +125,27 @@ export function* onSignUpStart() {
   yield takeLatest(UserActionType.SIGNUP_START, signUpAsync);
 }
 
+export function* addVideoAsync(action) {
+  try {
+    yield addVideoToPlayList(action.payload.user, action.payload.video);
+    put(addVideoSuccess());
+    yield toaster.notify(<h5>SUCCESSFULLY ADDED TO PLAYLIST</h5>, {
+      duration: 5000,
+    });
+  } catch (error) {
+    put(addVideoFaliure(error));
+    yield toaster.notify(<h5>{error.message}</h5>, {
+      duration: 5000,
+    });
+  }
+}
+export function* onAddVideoStart() {
+  yield takeLatest(UserActionType.ADD_VIDEO_START, addVideoAsync);
+}
+
 export function* userSagas() {
   yield all([
+    call(onAddVideoStart),
     call(onGoogleSignInStart),
     call(onEmailSignInStart),
     call(onCheckUserSession),

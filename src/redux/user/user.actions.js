@@ -48,3 +48,17 @@ export const signUpFalure = (error) => ({
   type: UserActionType.SIGNUP_FALIURE,
   payload: error,
 });
+
+export const addVideoStart = (user, video) => ({
+  type: UserActionType.ADD_VIDEO_START,
+  payload: { video, user },
+});
+
+export const addVideoSuccess = () => ({
+  type: UserActionType.ADD_VIDEO_SUCCESS,
+});
+
+export const addVideoFaliure = (error) => ({
+  type: UserActionType.ADD_VIDEO_FALIURE,
+  payload: error,
+});

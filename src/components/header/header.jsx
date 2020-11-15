@@ -6,24 +6,30 @@ import { connect } from "react-redux";
 import { selectCurrentUser } from "../../redux/user/user.selectors";
 import { createStructuredSelector } from "reselect";
 import { signOutStart } from "../../redux/user/user.actions";
+import { withRouter } from "react-router-dom";
 import Gravatar from "react-gravatar";
-function Header({ currentUser, signOutStart }) {
-  console.log(currentUser);
+function Header({ currentUser, signOutStart, history, match }) {
+  console.log(history);
+  console.log(match);
   return (
     <div className="header">
       <SearchBar />
       {currentUser ? (
-        <Link to="/" onClick={signOutStart}>
-          <div className="option">signout</div>
-        </Link>
+        <div className="option">
+          {" "}
+          <Link to="/" onClick={signOutStart}>
+            signout
+          </Link>
+        </div>
       ) : (
-        <Link to="/signin">
-          <div className="option">signin</div>
-        </Link>
+        <div className="option">
+          {" "}
+          <Link to="/signin">signin</Link>
+        </div>
       )}
-      <Link to="/">
-        <div className="option">home</div>
-      </Link>
+      <div className="option">
+        <Link to="/">home</Link>
+      </div>
       <Gravatar
         email={currentUser ? currentUser.email : "abc@xyz.com"}
         size={50}
@@ -47,4 +53,4 @@ const mapStateToProps = createStructuredSelector({
 const mapDispatchToProps = (dispatch) => ({
   signOutStart: () => dispatch(signOutStart()),
 });
-export default connect(mapStateToProps, mapDispatchToProps)(Header);
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Header));

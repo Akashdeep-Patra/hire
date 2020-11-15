@@ -45,6 +45,15 @@
     }
   }
 }
+
+@media screen and (max-width: 550px) {
+  .video-player {
+    .player {
+      height: 40vh;
+    }
+  }
+}
+
 @media screen and (max-width: 450px) {
   .video-player {
     .player {

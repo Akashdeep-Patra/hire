@@ -3,21 +3,30 @@ import "./video-card.scss";
 import { connect } from "react-redux";
 import { setSelectedVideo } from "../../redux/player/player.actions";
 import { withRouter } from "react-router-dom";
+import AddButton from "../add_button/add_button";
+import { selectCurrentUser } from "../../redux/user/user.selectors";
+import { createStructuredSelector } from "reselect";
 const VideoCard = (props) => {
-  const { match, history, title, thumbnails } = props;
+  const {
+    match,
+    history,
+    title,
+    thumbnails,
+    description,
+    videoId,
+    currentUser,
+  } = props;
   // console.log(props);
   return (
-    <div
-      className="video-card"
-      onClick={() => {
-        props.setSelectedVideo(props);
-        // console.log(match);
-        if (match.url.length < 4 || match.url.split("/").pop() !== "player") {
-          history.push(`${match.url}player`);
-        }
-      }}
-    >
+    <div className="video-card">
       <div
+        onClick={() => {
+          props.setSelectedVideo(props);
+          // console.log(match);
+          if (match.url.length < 4 || match.url.split("/").pop() !== "player") {
+            history.push(`${match.url}player`);
+          }
+        }}
         style={{ backgroundImage: `url(${thumbnails.medium.url})` }}
         className="thumbnail"
       >
@@ -28,10 +37,22 @@ const VideoCard = (props) => {
         /> */}
       </div>
       <div className="title">{title}</div>
+      {currentUser ? (
+        <AddButton
+          user={currentUser}
+          video={{ title, videoId, description, thumbnails }}
+        />
+      ) : null}
     </div>
   );
 };
 const mapDispatchToProps = (dispatch) => ({
   setSelectedVideo: (video) => dispatch(setSelectedVideo(video)),
 });
-export default connect(null, mapDispatchToProps)(withRouter(VideoCard));
+const mapStateToProps = createStructuredSelector({
+  currentUser: selectCurrentUser,
+});
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withRouter(VideoCard));
