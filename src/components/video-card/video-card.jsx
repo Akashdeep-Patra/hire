@@ -4,7 +4,11 @@ import { connect } from "react-redux";
 import { setSelectedVideo } from "../../redux/player/player.actions";
 import { withRouter } from "react-router-dom";
 import AddButton from "../add_button/add_button";
-import { selectCurrentUser } from "../../redux/user/user.selectors";
+import DeleteButton from "../delete_button/delete_button";
+import {
+  selectCurrentUser,
+  selectPlayList,
+} from "../../redux/user/user.selectors";
 import { createStructuredSelector } from "reselect";
 const VideoCard = (props) => {
   const {
@@ -15,6 +19,7 @@ const VideoCard = (props) => {
     description,
     videoId,
     currentUser,
+    playList,
   } = props;
   // console.log(props);
   return (
@@ -38,10 +43,17 @@ const VideoCard = (props) => {
       </div>
       <div className="title">{title}</div>
       {currentUser ? (
-        <AddButton
-          user={currentUser}
-          video={{ title, videoId, description, thumbnails }}
-        />
+        playList[videoId] ? (
+          <DeleteButton
+            user={currentUser}
+            video={{ title, videoId, description, thumbnails }}
+          />
+        ) : (
+          <AddButton
+            user={currentUser}
+            video={{ title, videoId, description, thumbnails }}
+          />
+        )
       ) : null}
     </div>
   );
@@ -51,6 +63,7 @@ const mapDispatchToProps = (dispatch) => ({
 });
 const mapStateToProps = createStructuredSelector({
   currentUser: selectCurrentUser,
+  playList: selectPlayList,
 });
 export default connect(
   mapStateToProps,

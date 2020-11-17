@@ -9,8 +9,8 @@ import { signOutStart } from "../../redux/user/user.actions";
 import { withRouter } from "react-router-dom";
 import Gravatar from "react-gravatar";
 function Header({ currentUser, signOutStart, history, match }) {
-  console.log(history);
-  console.log(match);
+  // console.log(history);
+  // console.log(match);
   return (
     <div className="header">
       <SearchBar />

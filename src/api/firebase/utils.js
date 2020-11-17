@@ -142,4 +142,20 @@ export const deleteVideoFromPlayList = async (user, video) => {
   }
 };
 
+export const getPlayList = async (user) => {
+  const playListRef = firestore
+    .collection("playlists")
+    .doc(user.id)
+    .collection("playlist");
+  // console.log(user);
+  const playListSnapShot = await playListRef.get();
+
+  const data = {};
+  playListSnapShot.forEach((obj) => {
+    const doc = obj.data();
+    // console.log(doc);
+    data[doc.videoId] = doc;
+  });
+  return data;
+};
 export default firebase;

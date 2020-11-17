@@ -62,3 +62,31 @@ export const addVideoFaliure = (error) => ({
   type: UserActionType.ADD_VIDEO_FALIURE,
   payload: error,
 });
+
+export const deleteVideoStart = (user, video) => ({
+  type: UserActionType.DELETE_VIDEO_START,
+  payload: { user, video },
+});
+
+export const deleteVideoSuccess = () => ({
+  type: UserActionType.DELETE_VIDEO_SUCCESS,
+});
+
+export const deleteVideoFaliure = (error) => ({
+  type: UserActionType.DELETE_VIDEO_FALIURE,
+  payload: error,
+});
+
+export const getPlayListStart = (user) => ({
+  type: UserActionType.GET_PLAYLIST_START,
+  payload: user,
+});
+export const getPlayListSuccess = (playList) => ({
+  type: UserActionType.GET_PLAYLIST_SUCCESS,
+  payload: playList,
+});
+
+export const getPlayListFaliure = (error) => ({
+  type: UserActionType.GET_PLAYLIST_FALIURE,
+  payload: error,
+});

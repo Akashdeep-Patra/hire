@@ -1,10 +1,13 @@
 import { UserActionType } from "./user.types";
 const INITIAL_STATE = {
   currentUser: null,
+  playList: {},
   signInError: null,
   signOutError: null,
   signUpError: null,
   addVideoError: null,
+  deleteVideoError: null,
+  getPlayListError: null,
 };
 const userReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
@@ -49,6 +52,27 @@ const userReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         addVideoError: action.payload,
+      };
+    case UserActionType.DELETE_VIDEO_SUCCESS:
+      return {
+        ...state,
+        deleteVideoError: null,
+      };
+    case UserActionType.DELETE_VIDEO_FALIURE:
+      return {
+        ...state,
+        deleteVideoError: action.payload,
+      };
+    case UserActionType.GET_PLAYLIST_SUCCESS:
+      return {
+        ...state,
+        playList: action.payload,
+        getPlayListError: null,
+      };
+    case UserActionType.GET_PLAYLIST_FALIURE:
+      return {
+        ...state,
+        getPlayListError: action.payload,
       };
     default:
       return state;
