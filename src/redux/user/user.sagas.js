@@ -135,8 +135,7 @@ export function* onSignUpStart() {
 export function* addVideoAsync(action) {
   try {
     yield addVideoToPlayList(action.payload.user, action.payload.video);
-    yield put(addVideoSuccess());
-    yield put(getPlayListStart(action.payload.user));
+    yield put(addVideoSuccess(action.payload.video));
     yield toaster.notify(<h5>SUCCESSFULLY ADDED TO PLAYLIST</h5>, {
       duration: 5000,
     });
@@ -154,8 +153,7 @@ export function* onAddVideoStart() {
 export function* deleteVideoAsync(action) {
   try {
     yield deleteVideoFromPlayList(action.payload.user, action.payload.video);
-    yield put(deleteVideoSuccess());
-    yield put(getPlayListStart(action.payload.user));
+    yield put(deleteVideoSuccess(action.payload.video));
     yield toaster.notify(<h5>VIDEO SUCCESSFULLY REMOVED FROM PLAYLIST</h5>, {
       duration: 5000,
     });

@@ -54,8 +54,9 @@ export const addVideoStart = (user, video) => ({
   payload: { video, user },
 });
 
-export const addVideoSuccess = () => ({
+export const addVideoSuccess = (video) => ({
   type: UserActionType.ADD_VIDEO_SUCCESS,
+  payload: video,
 });
 
 export const addVideoFaliure = (error) => ({
@@ -68,8 +69,9 @@ export const deleteVideoStart = (user, video) => ({
   payload: { user, video },
 });
 
-export const deleteVideoSuccess = () => ({
+export const deleteVideoSuccess = (video) => ({
   type: UserActionType.DELETE_VIDEO_SUCCESS,
+  payload: video,
 });
 
 export const deleteVideoFaliure = (error) => ({

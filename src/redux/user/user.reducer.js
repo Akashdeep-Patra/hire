@@ -1,4 +1,8 @@
 import { UserActionType } from "./user.types";
+import {
+  addVideoToPlayListState,
+  deleteVideoFromPlayListState,
+} from "./helper";
 const INITIAL_STATE = {
   currentUser: null,
   playList: {},
@@ -44,20 +48,14 @@ const userReducer = (state = INITIAL_STATE, action) => {
         signUpError: action.payload,
       };
     case UserActionType.ADD_VIDEO_SUCCESS:
-      return {
-        ...state,
-        addVideoError: null,
-      };
+      return addVideoToPlayListState(state, action.payload);
     case UserActionType.ADD_VIDEO_FALIURE:
       return {
         ...state,
         addVideoError: action.payload,
       };
     case UserActionType.DELETE_VIDEO_SUCCESS:
-      return {
-        ...state,
-        deleteVideoError: null,
-      };
+      return deleteVideoFromPlayListState(state, action.payload);
     case UserActionType.DELETE_VIDEO_FALIURE:
       return {
         ...state,

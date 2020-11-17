@@ -27,9 +27,14 @@ const VideoCard = (props) => {
       <div
         onClick={() => {
           props.setSelectedVideo(props);
-          // console.log(match);
+          console.log(match);
+          console.log(history);
           if (match.url.length < 4 || match.url.split("/").pop() !== "player") {
-            history.push(`${match.url}player`);
+            if (match.url.charAt(match.url.length - 1) === "/") {
+              history.push(`${match.url}player`);
+            } else {
+              history.push(`${match.url}/player`);
+            }
           }
         }}
         style={{ backgroundImage: `url(${thumbnails.medium.url})` }}

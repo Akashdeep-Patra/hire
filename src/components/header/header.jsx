@@ -30,6 +30,11 @@ function Header({ currentUser, signOutStart, history, match }) {
       <div className="option">
         <Link to="/">home</Link>
       </div>
+      {currentUser ? (
+        <div className="option">
+          <Link to="/playlist">playlist</Link>
+        </div>
+      ) : null}
       <Gravatar
         email={currentUser ? currentUser.email : "abc@xyz.com"}
         size={50}
