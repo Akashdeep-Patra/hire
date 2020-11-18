@@ -36,6 +36,7 @@ export function* getSnapshotFromUserAuth(userAuth) {
     yield put(signInFaliure(error));
     yield toaster.notify(<h5>{error.message}</h5>, {
       duration: 5000,
+      position: "bottom-right",
     });
   }
 }
@@ -46,11 +47,13 @@ export function* signInWithGoogleAsync() {
     yield getSnapshotFromUserAuth(user);
     yield toaster.notify(<h5>SUCCESSFULLY SIGNED IN WITH GOOGLE</h5>, {
       duration: 5000,
+      position: "bottom-right",
     });
   } catch (error) {
     yield put(signInFaliure(error));
     yield toaster.notify(<h5>{error.message}</h5>, {
       duration: 5000,
+      position: "bottom-right",
     });
   }
 }
@@ -59,11 +62,15 @@ export function* signInWithEmailAsync({ payload: { email, password } }) {
   try {
     const { user } = yield auth.signInWithEmailAndPassword(email, password);
     yield getSnapshotFromUserAuth(user);
-    yield toaster.notify(<h5>SUCCESSFULLY SIGNED IN</h5>, { duration: 5000 });
+    yield toaster.notify(<h5>SUCCESSFULLY SIGNED IN</h5>, {
+      duration: 5000,
+      position: "bottom-right",
+    });
   } catch (error) {
     yield put(signInFaliure(error));
     yield toaster.notify(<h5>{error.message}</h5>, {
       duration: 5000,
+      position: "bottom-right",
     });
   }
 }
@@ -76,11 +83,15 @@ export function* isUserAuthenticated() {
       return;
     }
     yield getSnapshotFromUserAuth(userAuth);
-    yield toaster.notify(<h5>SESSION RETAINED</h5>, { duration: 5000 });
+    yield toaster.notify(<h5>SESSION RETAINED</h5>, {
+      duration: 5000,
+      position: "bottom-right",
+    });
   } catch (error) {
     yield put(signInFaliure(error));
     yield toaster.notify(<h5>{error.message}</h5>, {
       duration: 5000,
+      position: "bottom-right",
     });
   }
 }
@@ -101,11 +112,15 @@ export function* signOutAsync() {
   try {
     yield auth.signOut();
     yield put(signOutSuccess());
-    yield toaster.notify(<h5>SUCCESSFULLY SIGNED OUT</h5>, { duration: 5000 });
+    yield toaster.notify(<h5>SUCCESSFULLY SIGNED OUT</h5>, {
+      duration: 5000,
+      position: "bottom-right",
+    });
   } catch (error) {
     yield put(signOutFaliure(error));
     yield toaster.notify(<h5>{error.message}</h5>, {
       duration: 5000,
+      position: "bottom-right",
     });
   }
 }
@@ -118,12 +133,16 @@ export function* signUpAsync({ payload: { displayName, email, password } }) {
     const { user } = yield auth.createUserWithEmailAndPassword(email, password);
     yield createUserProfileDocument(user, { displayName });
     yield put(signUpSuccess());
-    yield toaster.notify(<h5>SUCCESSFULLY SIGNED UP</h5>, { duration: 5000 });
+    yield toaster.notify(<h5>SUCCESSFULLY SIGNED UP</h5>, {
+      duration: 5000,
+      position: "bottom-right",
+    });
     yield getSnapshotFromUserAuth(user);
   } catch (error) {
     yield put(signUpFalure(error));
     yield toaster.notify(<h5>{error.message}</h5>, {
       duration: 5000,
+      position: "bottom-right",
     });
   }
 }
@@ -138,11 +157,13 @@ export function* addVideoAsync(action) {
     yield put(addVideoSuccess(action.payload.video));
     yield toaster.notify(<h5>SUCCESSFULLY ADDED TO PLAYLIST</h5>, {
       duration: 5000,
+      position: "bottom-right",
     });
   } catch (error) {
     put(addVideoFaliure(error));
     yield toaster.notify(<h5>{error.message}</h5>, {
       duration: 5000,
+      position: "bottom-right",
     });
   }
 }
@@ -156,11 +177,13 @@ export function* deleteVideoAsync(action) {
     yield put(deleteVideoSuccess(action.payload.video));
     yield toaster.notify(<h5>VIDEO SUCCESSFULLY REMOVED FROM PLAYLIST</h5>, {
       duration: 5000,
+      position: "bottom-right",
     });
   } catch (error) {
     put(deleteVideoFaliure(error));
     yield toaster.notify(<h5>{error.message}</h5>, {
       duration: 5000,
+      position: "bottom-right",
     });
   }
 }

@@ -46,20 +46,22 @@ const VideoCard = (props) => {
           className="thumbnail-image"
         /> */}
       </div>
-      <div className="title">{title}</div>
-      {currentUser ? (
-        playList[videoId] ? (
-          <DeleteButton
-            user={currentUser}
-            video={{ title, videoId, description, thumbnails }}
-          />
-        ) : (
-          <AddButton
-            user={currentUser}
-            video={{ title, videoId, description, thumbnails }}
-          />
-        )
-      ) : null}
+      <div className="card-footer">
+        <div className="title">{title}</div>
+        {currentUser ? (
+          playList[videoId] ? (
+            <DeleteButton
+              user={currentUser}
+              video={{ title, videoId, description, thumbnails }}
+            />
+          ) : (
+            <AddButton
+              user={currentUser}
+              video={{ title, videoId, description, thumbnails }}
+            />
+          )
+        ) : null}
+      </div>
     </div>
   );
 };

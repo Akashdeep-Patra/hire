@@ -3,16 +3,17 @@ import "./delete_button.scss";
 // import { addVideoToPlayList } from "../../api/firebase/utils";
 import { connect } from "react-redux";
 import { deleteVideoStart } from "../../redux/user/user.actions";
+import { IoMdRemoveCircle } from "react-icons/io";
 const DeleteButton = (props) => {
   const { video, user, deleteVideoStart } = props;
 
   return (
-    <div
+    <IoMdRemoveCircle
       onClick={async () => {
         deleteVideoStart(user, video);
       }}
       className="delete-button"
-    ></div>
+    ></IoMdRemoveCircle>
   );
 };
 
