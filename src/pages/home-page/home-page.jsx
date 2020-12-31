@@ -9,32 +9,35 @@ import React, { useEffect } from "react";
 import VideoCard from "../../components/video-card/video-card";
 import "./home-page.scss";
 import { getHomeVideos } from "../../api/firebase/utils";
+import { getUsersList } from "../../api"
 const HomePage = ({ setHomeVideos, setSelectedVideo, videos }) => {
-  useEffect(() => {
-    const getSearch = async (text) => {
-      const result = await getHomeVideos();
-      // await addVideosToHome(result, text);
-      setHomeVideos(result);
-      setSelectedVideo(result[25]);
-    };
-    getSearch("");
-  }, [setHomeVideos, setSelectedVideo]);
+    useEffect(() => {
+        const getSearch = async (text) => {
+            const result = await getHomeVideos();
+            // await addVideosToHome(result, text);
+            const users = await getUsersList()
+            console.log('users', users);
+            setHomeVideos(result);
+            setSelectedVideo(result[25]);
+        };
+        getSearch("");
+    }, [setHomeVideos, setSelectedVideo]);
 
-  return (
-    <div className="home-page">
-      {videos
-        .filter((val, index) => index < 12)
-        .map((video) => (
-          <VideoCard key={video.videoId} {...video}></VideoCard>
-        ))}
-    </div>
-  );
+    return (
+        <div className="home-page">
+            {videos
+                .filter((val, index) => index < 12)
+                .map((video) => (
+                    <VideoCard key={video.videoId} {...video}></VideoCard>
+                ))}
+        </div>
+    );
 };
 const mapStateToProps = createStructuredSelector({
-  videos: selectHomeVideos,
+    videos: selectHomeVideos,
 });
 const mapDispatchToProps = (dispatch) => ({
-  setHomeVideos: (videos) => dispatch(setHomeVideos(videos)),
-  setSelectedVideo: (video) => dispatch(setSelectedVideo(video)),
+    setHomeVideos: (videos) => dispatch(setHomeVideos(videos)),
+    setSelectedVideo: (video) => dispatch(setSelectedVideo(video)),
 });
 export default connect(mapStateToProps, mapDispatchToProps)(HomePage);
